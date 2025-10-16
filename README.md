@@ -14,9 +14,9 @@
 
 [Elgato Stream Decks](https://www.elgato.com/us/en/s/explore-stream-deck) are, without a doubt, powerful hardware (and software!) controllers for streamers, content creators, developers, and anyone looking to enhance their productivity. However, there is *always* room for improvement. This is **ASDF**, a collection of advanced stream deck features. This project has three main goals:
 
-**💪 Empower power users**: Provide advanced features and customization options for really experienced users (like me 🤓).
+**💪 Empower power users**: Provide advanced features and customization for really experienced users (like me 🤓).
 
-**🛠️ Bend the boundaries**: Push the limits of what the Stream Deck can do, exploring new possibilities and functionalities.
+**🛠️ Bend the boundaries**: Push the limits of what Stream Decks can do, exploring new possibilities.
 
 **🌟 Be an inspiration**: Some features may inspire the community and also the software developers over at Elgato 😉
 
@@ -24,13 +24,15 @@
 
 This project is split up in modules that can be used independently. Each module has its own folder and a README file explaining its purpose, installation instructions, and usage. Modules have a lifecycle as marked by [badges](BADGES.md).
 
-### Paste icon from clipboard shortcut
-![State](https://img.shields.io/badge/state-idea-yellow)
-![Author](https://img.shields.io/badge/by-sebinside-slategray)
-![Language](https://img.shields.io/badge/language-AHK-slategray)
+### 1. Paste icon from clipboard shortcut
+[![State](https://img.shields.io/badge/state-idea-yellow)](BADGES.md)
+[![Author](https://img.shields.io/badge/by-sebinside-slategray)](https://github.com/sebinside)
+[![Language](https://img.shields.io/badge/language-AHK-slategray)](https://www.autohotkey.com/)
 
 Since Stream Deck software 6.9, it is possible to paste an icon from the clipboard. However, there is no shortcut to do so. This module adds the shortcut `Ctrl+Shift+V` to paste an icon from the clipboard.
 
 ## Ideas
 
-Other ideas to be added soon...
+There are many more ideas, some of which are collected here. If you want to add your ideas, please feel free to [open an issue](https://github.com/sebinside/ASDF/issues).
+
+*Other ideas to be added soon...*
