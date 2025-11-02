@@ -1,7 +1,12 @@
 #Requires AutoHotkey v2.0
 #SingleInstance force
+
+A_IconTip := "ASDF: Paste Icon From Clipboard"
+if (FileExist("../asdf.ico"))
+    TraySetIcon("../asdf.ico")
+
 streamDeckWinTitle := "ahk_exe StreamDeck.exe"
-sideBarSize := 281
+sideBarSize := applyDPIScaling(281)
 
 #HotIf WinActive(streamDeckWinTitle)
 ^+v:: {
@@ -24,7 +29,7 @@ sideBarSize := 281
 #HotIf
 
 isIconSelected(windowX, windowWidth, darkLinePosition) {
-    selectedIconLineDelta := 51
+    selectedIconLineDelta := applyDPIScaling(51)
     selectedIconLineColor := 0x414141
 
     lineX := windowX + (windowWidth - sideBarSize) / 2
@@ -89,8 +94,8 @@ getClipboardTextFiles() {
 }
 
 getDarkLine(windowX, windowY, windowWidth, windowHeight) {
-    searchDeltaX := 30
-    searchDeltaY := 50
+    searchDeltaX := applyDPIScaling(30)
+    searchDeltaY := applyDPIScaling(50)
     darkLineColor := 0x222222
 
     PixelSearch(&darkLineX, &darkLineY, windowX + searchDeltaX, windowY + searchDeltaY, windowX + searchDeltaX, windowY +
@@ -103,9 +108,9 @@ mouseClickOnPasteFromClipboardButton(windowX, windowY, windowWidth, windowHeight
     BlockInput("MouseMove")
     MouseGetPos(&mouseX, &mouseY)
 
-    deltaSettingsButtonX := 180
-    deltaSettingsButtonY := 80
-    deltaPasteButtonY := 60
+    deltaSettingsButtonX := applyDPIScaling(180)
+    deltaSettingsButtonY := applyDPIScaling(80)
+    deltaPasteButtonY := applyDPIScaling(60)
     positionSettingsButtonX := windowX + (windowWidth - sideBarSize) / 2 - deltaSettingsButtonX
     positionSettingsButtonY := darkLinePosition[2] + deltaSettingsButtonY
 
@@ -115,4 +120,12 @@ mouseClickOnPasteFromClipboardButton(windowX, windowY, windowWidth, windowHeight
 
     MouseMove(mouseX, mouseY, 0)
     BlockInput("MouseMoveOff")
+}
+
+applyDPIScaling(value) {
+    if (A_ScreenDPI == 96) {
+        return value
+    } else {
+        return value * A_ScreenDPI / 100
+    }
 }
