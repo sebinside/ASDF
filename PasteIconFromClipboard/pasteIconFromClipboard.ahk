@@ -15,6 +15,10 @@ sideBarSize := 281
         return
     }
 
+    if (!isClipboardImage()) {
+        return
+    }
+
     mouseClickOnPasteFromClipboardButton(windowX, windowY, windowWidth, windowHeight, darkLinePosition)
 }
 #HotIf
@@ -29,6 +33,61 @@ isIconSelected(windowX, windowWidth, darkLinePosition) {
     return PixelGetColor(lineX, lineY) = selectedIconLineColor
 }
 
+isClipboardImage() {
+    CF_BITMAP := 2
+    CF_DIB := 8
+    CF_DIBV5 := 17
+    CF_HDROP := 15
+
+    isImage := DllCall("IsClipboardFormatAvailable", "UInt", CF_BITMAP)
+    || DllCall("IsClipboardFormatAvailable", "UInt", CF_DIB)
+    || DllCall("IsClipboardFormatAvailable", "UInt", CF_DIBV5)
+
+    if (isImage) {
+        return true
+    }
+
+    if (DllCall("IsClipboardFormatAvailable", "UInt", CF_HDROP, "Int")) {
+        exts := Map(".png", true, ".jpg", true, ".jpeg", true, ".bmp", true, ".gif", true, ".tif", true, ".tiff", true)
+
+        clipboardFiles := getClipboardTextFiles()
+        if (clipboardFiles.Length != 1) {
+            return false
+        }
+
+        SplitPath(clipboardFiles[1], , , &ext)
+        if (exts.Has("." . StrLower(ext))) {
+            return true
+        }
+    }
+
+    return false
+}
+
+getClipboardTextFiles() {
+    files := []
+    txt := A_Clipboard
+    if (txt = "")
+        return files
+
+    for rawLine in StrSplit(txt, "`n", "`r") {
+        line := Trim(rawLine, ' "')
+        if (!line)
+            continue
+
+        for piece in StrSplit(line, "`t;") {
+            path := Trim(piece, ' "')
+            if (!path)
+                continue
+
+            attrs := FileExist(path)
+            if (attrs && !InStr(attrs, "D"))
+                files.Push(path)
+        }
+    }
+    return files
+}
+
 getDarkLine(windowX, windowY, windowWidth, windowHeight) {
     searchDeltaX := 30
     searchDeltaY := 50
@@ -41,6 +100,9 @@ getDarkLine(windowX, windowY, windowWidth, windowHeight) {
 }
 
 mouseClickOnPasteFromClipboardButton(windowX, windowY, windowWidth, windowHeight, darkLinePosition) {
+    BlockInput("MouseMove")
+    MouseGetPos(&mouseX, &mouseY)
+
     deltaSettingsButtonX := 180
     deltaSettingsButtonY := 80
     deltaPasteButtonY := 60
@@ -49,22 +111,8 @@ mouseClickOnPasteFromClipboardButton(windowX, windowY, windowWidth, windowHeight
 
     MouseClick(, positionSettingsButtonX, positionSettingsButtonY)
     Sleep(250)
+    MouseClick(, positionSettingsButtonX, positionSettingsButtonY + deltaPasteButtonY)
 
-    ; TODO: Reicht noch nicht aus
-    isImage := DllCall("IsClipboardFormatAvailable", "uint", 2)    ; CF_BITMAP
-    || DllCall("IsClipboardFormatAvailable", "uint", 8)    ; CF_DIB
-
-    MsgBox isImage ? "Zwischenablage enthält ein Bild." : "Kein Bild in der Zwischenablage."
-
-    return
-
-    menuOverlayColor := 0x3C3C3C
-    menuOverlayDelta := 110
-
-    ; TODO: Zwischenablage prüfen anstatt größe und das auch früher
-    if (PixelGetColor(positionSettingsButtonX, positionSettingsButtonY + menuOverlayDelta) = menuOverlayColor) {
-        MouseClick(, positionSettingsButtonX, positionSettingsButtonY + deltaPasteButtonY)
-    } else {
-        MouseClick(, positionSettingsButtonX + 20, positionSettingsButtonY)
-    }
+    MouseMove(mouseX, mouseY, 0)
+    BlockInput("MouseMoveOff")
 }
