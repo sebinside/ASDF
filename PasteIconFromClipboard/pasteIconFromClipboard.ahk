@@ -96,12 +96,13 @@ getClipboardTextFiles() {
 getDarkLine(windowX, windowY, windowWidth, windowHeight) {
     searchDeltaX := applyDPIScaling(30)
     searchDeltaY := applyDPIScaling(50)
+    darkLineHeight := applyDPIScaling(2)
     darkLineColor := 0x222222
 
     PixelSearch(&darkLineX, &darkLineY, windowX + searchDeltaX, windowY + searchDeltaY, windowX + searchDeltaX, windowY +
         windowHeight - searchDeltaY, darkLineColor)
 
-    return [darkLineX, darkLineY]
+    return [darkLineX, darkLineY + darkLineHeight]
 }
 
 mouseClickOnPasteFromClipboardButton(windowX, windowY, windowWidth, windowHeight, darkLinePosition) {
@@ -126,6 +127,6 @@ applyDPIScaling(value) {
     if (A_ScreenDPI == 96) {
         return value
     } else {
-        return value * A_ScreenDPI / 100
+        return Ceil(value * A_ScreenDPI / 100)
     }
 }
