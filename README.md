@@ -9,9 +9,10 @@
 <!--
 [![Build](https://img.shields.io/github/actions/workflow/status/sebinside/ASDF/build.yml)](https://github.com/sebinside/ASDF/actions)
 [![Release](https://img.shields.io/github/v/release/sebinside/ASDF)](https://github.com/sebinside/ASDF/releases)
-[![Features](https://img.shields.io/badge/features%20done-0-orange)](https://github.com/sebinside/ASDF?tab=readme-ov-file#features)
-TODO: Add "tested with" Stream Deck Software version!
 -->
+[![Features](https://img.shields.io/badge/features%20done-1-orange)](https://github.com/sebinside/ASDF?tab=readme-ov-file#features)
+[![Stream Deck Version](https://img.shields.io/badge/stream%20deck%20software-7.0.3-blue)](https://www.elgato.com/us/en/s/stream-deck-app)
+
 
 [Elgato Stream Decks](https://www.elgato.com/us/en/s/explore-stream-deck) are, without a doubt, powerful hardware ([and software](https://www.elgato.com/us/en/s/virtual-stream-deck)) controllers for streamers, content creators, developers, and anyone looking to enhance their productivity. However, there is *always* room for improvement. This is **ASDF**, a collection of advanced stream deck features. This project has three main goals:
 
@@ -27,8 +28,8 @@ This project is split up into features that can be used independently.
 Each feature has its own folder and a README file explaining its purpose, installation instructions, and usage. 
 Features have a lifecycle as marked by [badges](BADGES.md).
 
-### 1. Paste icon from clipboard shortcut
-[![State](https://img.shields.io/badge/state-idea-yellow)](BADGES.md)
+### [1. Paste icon from clipboard shortcut](/PasteIconFromClipboard/)
+[![State](https://img.shields.io/badge/state-prototype-blue)](BADGES.md)
 [![Author](https://img.shields.io/badge/by-sebinside-slategray)](https://github.com/sebinside)
 [![Language](https://img.shields.io/badge/language-AHK-slategray)](https://www.autohotkey.com/)
 
