@@ -1,5 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance force
+#Include ..\lib.ahk
 
 A_IconTip := "ASDF: Paste Icon From Clipboard"
 if (FileExist("../asdf.ico"))
@@ -29,7 +30,7 @@ sideBarSize := applyDPIScaling(281)
 #HotIf
 
 isIconSelected(windowX, windowWidth, darkLinePosition) {
-    selectedIconLineDelta := applyDPIScaling(51)
+    selectedIconLineDelta := applyDPIScaling(49)
     selectedIconLineColor := 0x414141
 
     lineX := windowX + (windowWidth - sideBarSize) / 2
@@ -121,12 +122,4 @@ mouseClickOnPasteFromClipboardButton(windowX, windowY, windowWidth, windowHeight
 
     MouseMove(mouseX, mouseY, 0)
     BlockInput("MouseMoveOff")
-}
-
-applyDPIScaling(value) {
-    if (A_ScreenDPI == 96) {
-        return value
-    } else {
-        return Ceil(value * A_ScreenDPI / 100)
-    }
 }

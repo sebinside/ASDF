@@ -1,6 +1,10 @@
 #Requires AutoHotkey v2.0
 #SingleInstance force
 
+; Include all other ASDF scripts
+#Include "PasteIconFromClipboard\pasteIconFromClipboard.ahk"
+#Include "SearchAction\searchAction.ahk"
+
 A_IconTip := "ASDF"
 if (FileExist("asdf.ico"))
     TraySetIcon("asdf.ico")
@@ -12,5 +16,3 @@ if (FileExist("asdf.ico"))
 }
 #HotIf
 
-; Include all other ASDF scripts
-#Include "PasteIconFromClipboard\pasteIconFromClipboard.ahk"
