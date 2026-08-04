@@ -47,6 +47,7 @@ There are many more ideas, some of which are collected here. If you want to add 
 * Better stream deck choose dialog for the stream deck software
 * DummyDeck: A drag-and-drop dummy stream deck window to simplify action organization and storage
 * AHK2VSD: Trigger VSD actions using AutoHotkey v2 scripts
+* Acrylic Blur for VSD
 * Mirror physical stream deck to virtual stream deck and vice versa (including, e.g., altering button states like removing labels)
 * Virtual stream deck weapon wheel mod
 * Sticky virtual stream decks (change position and visibility based on other windows)
